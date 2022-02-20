@@ -10,5 +10,5 @@
       apt: update_cache=yes
     - name: Install system dependencies
       apt:
-        name: dnsutils,mc,htop,netcat,netmap,net-tools
+        name: dnsutils,mc,htop,netcat,netmap,net-tools,subversion
         state: present
