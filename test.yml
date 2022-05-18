@@ -10,4 +10,4 @@
     - name: copy report.txt
       ansible.windows.win_copy:
         src: "{{ source }}"
-        dest: "{{ destination }}
+        dest: "{{ destination }}"
