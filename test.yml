@@ -1,6 +1,6 @@
 ---
 - name: Print all available facts
-  hosts: voip
+  hosts: all
   remote_user: devops
   
   tasks:
