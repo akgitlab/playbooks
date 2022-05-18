@@ -1,7 +1,5 @@
 ---
 - name: Update web servers
-  hosts: voip
-  remote_user: devops
   
   tasks:
   - name: Print all available facts
