@@ -1,6 +1,6 @@
 ---
 - name: Update web servers
-  hosts: old
+  hosts: voip
   tasks:
   - name: Print all available facts
     debug:
