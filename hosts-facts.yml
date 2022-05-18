@@ -1,7 +1,7 @@
 ---
 - name: Print all available facts
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   remote_user: devops
   become: true
     
