@@ -1,5 +1,6 @@
 ---
 - name: Update web servers
+  hosts: old
   tasks:
   - name: Print all available facts
     debug:
