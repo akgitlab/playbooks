@@ -1,0 +1,9 @@
+- name: "Add YUM repository"
+  yum_repository:
+    name: new_yum_repo
+    description: "New Yum Repo Description"
+    file: new_repo_file
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    enabled: yes
+    gpgcheck: no
+    validate_certs: no
