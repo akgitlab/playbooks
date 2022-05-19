@@ -4,8 +4,9 @@
   connection: local
 
   tasks:
-  - name: Deny root from logging in SSH
-    replace:
-      path: "/etc/ssh/sshd_config"
-      regexp: '^PermitRootLogin \w*$'
-      replace: 'PermitRootLogin no'
+  - name: Deny root from logging in
+    ansible.builtin.lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: '^(#)?PermitRootLogin \w*$'
+      line: 'PermitRootLogin no'
+      state: present
