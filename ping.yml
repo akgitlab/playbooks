@@ -3,6 +3,9 @@
   gather_facts: False
   connection: local
 
+  vars:
+    remote_host: 77.88.8.8
+
   tasks:
     - name: ping
       shell: ping -c 1 -w 2 "{{ remote_host }}"
