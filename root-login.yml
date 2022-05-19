@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  gather_facts: False
-  connection: local
 
   tasks:
   - name: Deny root from logging in
