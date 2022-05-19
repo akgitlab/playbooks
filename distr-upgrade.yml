@@ -4,6 +4,7 @@
   vars:
     reboot_connect_timeout: 5
     reboot_post_reboot_delay: 15
+    reboot_post_reboot_delay: 0
     reboot_timeout: 600
   tasks:
     # Upgrade RHEL family OS packages
@@ -28,9 +29,17 @@
         upgrade: dist
       when: ansible_os_family == "Debian"
 
-    # Reboot after upgrade
-    - name: Reboot host
+    # Reboot host after upgrade
+    - name: Check if a reboot is needed on all upgrade servers
+      register: reboot_required_file
+      stat: path=/var/run/reboot-required get_md5=no
+
+    - name: Reboot the box if kernel updated
       reboot:
+        msg: "Reboot initiated by Ansible for kernel updates"
         connect_timeout: "{{ reboot_connect_timeout }}"
-        post_reboot_delay: "{{ reboot_post_reboot_delay }}"
         reboot_timeout: "{{ reboot_timeout }}"
+        pre_reboot_delay: 0
+        post_reboot_delay: "{{ reboot_post_reboot_delay }}"
+        test_command: uptime
+      when: reboot_required_file.stat.exists
