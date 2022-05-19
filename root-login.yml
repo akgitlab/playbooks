@@ -3,9 +3,9 @@
   gather_facts: False
   connection: local
 
-tasks:
-- name: Deny root from logging in SSH
-  replace:
-    path: "/etc/ssh/sshd_config"
-    regexp: '^(#)?PermitRootLogin \w*$'
-    replace: 'PermitRootLogin no'
+  tasks:
+  - name: Deny root from logging in SSH
+    replace:
+      path: "/etc/ssh/sshd_config"
+      regexp: '^(#)?PermitRootLogin \w*$'
+      replace: 'PermitRootLogin no'
