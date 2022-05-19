@@ -1,6 +1,5 @@
 - name: Deny root from logging in SSH
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config
+  replace:
+    path: "/etc/ssh/sshd_config"
     regexp: '^(#)?PermitRootLogin \w*$'
-    line: 'PermitRootLogin no'
-    state: present
+    replace: 'PermitRootLogin no'
