@@ -1,12 +1,12 @@
 ---
-- name: Перезагрузка серверов
+- name: Servers reboot
   hosts: all
   gather_facts: no
   remote_user: devops
   become: true
 
   tasks:
-  - name: Перезагрузка хостов и ожидание их перезагрузки
+  - name: Rebooting hosts and waiting for them to reboot
     reboot:
       msg: "Reboot initiated by Ansible"
       connect_timeout: 5
