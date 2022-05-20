@@ -10,7 +10,12 @@
     command: dnf -y install zabbix-agent
     
   - name: Copy configuration file to host
-    template: src=/home/devops/share/config/zabbix/zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
+    copy:
+      src: /home/devops/share/config/zabbix/zabbix_agentd.conf
+      dest: /etc/zabbix/
+      owner: root
+      group: root
+      mode: '0644'
 
   - name: restart zabbix-agent
     command: systemctl restart zabbix-agent
