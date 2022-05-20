@@ -5,5 +5,5 @@
   tasks:
   - name: Restart custom service
     service:
-      name: zabbix-agent.service
+      name: zabbix-agent
       state: restarted
