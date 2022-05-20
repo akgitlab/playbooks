@@ -70,11 +70,11 @@
         group: root
         mode: '0644'
         
-    - name: Restart zabbix-agent service
-      command: systemctl restart zabbix-agent
-    
-    - name: Enable zabbix-agent service
-      command: systemctl enable zabbix-agent
+    - name: Enable as system service
+      service:
+        name: zabbix-agent
+        enabled: yes
+        use: service
 
     - name: Open port 10050 TCP in firewall
       firewalld:
