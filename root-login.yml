@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: '{{ hostlist }}'
 
   tasks:
   - name: Deny root from logging in
