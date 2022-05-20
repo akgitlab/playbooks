@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  gather_facts: False
 
   tasks:
   - name: Copy file to remote hosts
