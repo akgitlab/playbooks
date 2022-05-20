@@ -93,13 +93,13 @@
         state: restarted
       when: ansible_os_family == "RedHat"
       
-     - name: Open port 10050 TCP in iptables
-       iptables:
-         chain: INPUT
-         protocol: tcp
-         destination_port: 10050
-         ctstate: NEW
-         syn: match
-         jump: ACCEPT
-         comment: Accept Zabbix-agent connections
+    - name: Open port 10050 TCP in iptables
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: 10050
+        ctstate: NEW
+        syn: match
+        jump: ACCEPT
+        comment: Accept Zabbix-agent connections
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
