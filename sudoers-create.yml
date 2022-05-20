@@ -1,5 +1,4 @@
-
-
+---
 - name: Create a new sudoers file
       file:
         path: /etc/sudoers.d/zabbix
