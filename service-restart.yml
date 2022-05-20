@@ -4,6 +4,6 @@
 
   tasks:
   - name: Restart custom service
-    systemd:
-      name: zabbix-agent
+    service:
+      name: zabbix-agent.service
       state: restarted
