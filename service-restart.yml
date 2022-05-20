@@ -1,1 +1,9 @@
+---
+- hosts: all
+  gather_facts: False
 
+  tasks:
+  - name: "Restart custom service"
+    service:
+      name: zabbix-agent
+      state: restarted
