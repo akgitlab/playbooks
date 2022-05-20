@@ -1,7 +1,11 @@
-- name: copy skel
+---
+- hosts: all
+
+  tasks:
+  - name: Copy file to remote hosts
     copy:
-        src: templates/skel/
-        dest: /etc/skel/
-        owner: username
-        group: username
-        mode: '0755'
+      src: /home/devops/share/config/zabbix/zabbix_agentd.conf
+      dest: /etc/zabbix/
+      owner: root
+      group: root
+      mode: '0644'
