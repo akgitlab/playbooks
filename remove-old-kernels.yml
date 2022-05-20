@@ -1,8 +1,6 @@
 ---
-- name: Upgrade and Reboot RHEL & Debian family Linux distros
-  hosts: all
-  
 - name: Remove old kernels
+  hosts: '{{ hostlist }}'
     shell: "rpm -q kernel | grep -v `uname -r` | grep -v `/sbin/grubby --default-kernel | sed -r 's#^/boot/vmlinuz-##'` | xargs rpm -e || true"
 
 НАДО ДОРАБАТЫВАТЬ
