@@ -1,0 +1,81 @@
+---
+- name: Install zabbix-agent playbook
+  hosts: all
+  debugger: on_failed
+  tasks:
+    - name: Install zabbix-release CentOS 8
+      yum:
+        name: https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm
+        state: present
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
+
+    - name: Install zabbix-release CentOS 7
+      yum:
+        name: https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-1.el7.noarch.rpm
+        state: present
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
+
+    - name: Install zabbix release package
+      apt:
+        deb: https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-2+$(lsb_release -sc)_all.deb
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Install zabbix-agent2 package
+      package:
+        name: zabbix-agent2
+        state: present
+
+    - name: Change Server IP
+      lineinfile:
+        path: /etc/zabbix/zabbix_agent2.conf
+        regexp: 'Server=127.0.0.1'
+        line: "Server=127.0.0.1,<IP-адрес сервера Zabbix>"
+
+    - name: Change Active Server IP
+      lineinfile:
+        path: /etc/zabbix/zabbix_agent2.conf
+        regexp: 'ServerActive=127.0.0.1'
+        line: "ServerActive=127.0.0.1,<IP-адрес сервера Zabbix>"
+
+    - name: Stop zabbix-agent
+      service:
+        name: zabbix-agent
+        state: stopped
+        enabled: no
+      ignore_errors: yes
+
+
+    - name: Start zabbix-agent2
+      service:
+        name: zabbix-agent2
+        state: started
+        enabled: yes
+
+    - name: Create a new sudoers file
+      file:
+        path: /etc/sudoers.d/zabbix
+        state: touch
+        mode: 0400
+        owner: root
+
+    - name: Add sudoers
+      copy:
+        dest: /etc/sudoers.d/zabbix
+        content: |
+          Defaults:zabbix !requiretty
+          Cmnd_Alias ZABBIX_CMD = /usr/bin/virsh -q list, /usr/bin/virsh -q list --all
+          zabbix ALL = (root) NOPASSWD: ZABBIX_CMD
+
+    - name: Add vmmanager config to zabbix
+      file:
+        path: /etc/zabbix/zabbix_agent2.d/vmmanager.conf
+        state: touch
+        mode: 0644
+        owner: root
+
+    - name: Configure zabbix for VMmanager
+      copy:
+        dest: /etc/zabbix/zabbix_agent2.d/vmmanager.conf
+        content: |
+          UserParameter=vm.all,sudo virsh -q list --all | wc -l
+          UserParameter=vm.running,sudo virsh -q list | wc -l
