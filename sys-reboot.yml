@@ -1,6 +1,5 @@
 ---
 - name: Servers reboot
-  hosts: "{{ hostlist }}"
   gather_facts: no
   remote_user: devops
   become: true
