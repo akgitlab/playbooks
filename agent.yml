@@ -26,37 +26,16 @@
         name: zabbix-agent
         state: present
 
-    - name: Stop zabbix-agent
-      service:
-        name: zabbix-agent
-        state: stopped
-        enabled: no
-      ignore_errors: yes
-
-    - name: Start zabbix-agent
-      service:
-        name: zabbix-agent
-        state: started
-        enabled: yes
-
-    - name: Create a new sudoers file
-      file:
-        path: /etc/sudoers.d/zabbix
-        state: touch
-        mode: 0400
-        owner: root
-
-    - name: Add sudoers
+    - name: Copy configuration file to remote host
       copy:
-        dest: /etc/sudoers.d/zabbix
-        content: |
-          Defaults:zabbix !requiretty
-          Cmnd_Alias ZABBIX_CMD = /usr/bin/virsh -q list, /usr/bin/virsh -q list --all
-          zabbix ALL = (root) NOPASSWD: ZABBIX_CMD
-
-    - name: Add vmmanager config to zabbix
-      file:
-        path: /etc/zabbix/zabbix_agent2.d/vmmanager.conf
-        state: touch
-        mode: 0644
+        src: /home/devops/share/config/zabbix/zabbix_agentd.conf
+        dest: /etc/zabbix/
         owner: root
+        group: root
+        mode: '0644'
+        
+    - name: restart zabbix-agent
+      command: systemctl restart zabbix-agent
+    
+    - name: enable zabbix-agent
+      command: systemctl enable zabbix-agent
