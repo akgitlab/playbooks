@@ -1,4 +1,16 @@
 ---
+- name: Remove old kernels on RHEL & Debian family Linux distros
+  hosts: '{{ hostlist }}'
+
+  tasks:
+    - name: Install yum-utils package on RHEL family
+      package:
+        name: yum-utils
+        state: present
+     when: ansible_os_family == "RedHat"
+
+
+---
 - name: Remove old kernels
   hosts: '{{ hostlist }}'
     shell: "rpm -q kernel | grep -v `uname -r` | grep -v `/sbin/grubby --default-kernel | sed -r 's#^/boot/vmlinuz-##'` | xargs rpm -e || true"
