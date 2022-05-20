@@ -1,0 +1,16 @@
+
+
+- name: Create a new sudoers file
+      file:
+        path: /etc/sudoers.d/zabbix
+        state: touch
+        mode: 0400
+        owner: root
+
+    - name: Add sudoers
+      copy:
+        dest: /etc/sudoers.d/zabbix
+        content: |
+          Defaults:zabbix !requiretty
+          Cmnd_Alias ZABBIX_CMD = /usr/bin/virsh -q list, /usr/bin/virsh -q list --all
+          zabbix ALL = (root) NOPASSWD: ZABBIX_CMD
