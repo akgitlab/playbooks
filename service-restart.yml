@@ -3,7 +3,7 @@
   gather_facts: False
 
   tasks:
-  - name: "Restart custom service"
+  - name: Restart custom service
     service:
       name: zabbix-agent
       state: restarted
