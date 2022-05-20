@@ -1,8 +1,6 @@
-- hosts: zabbix-agent
-  remote_user: root
-  vars:
-    server: 10.127.0.133
-    hostname: "{{ ansible_hostname }}"
+---
+- name: Install and configure Zabbix agent for your platform
+  hosts: all
   
   tasks:
   - name: Install oficial repository
@@ -16,5 +14,6 @@
 
   - name: restart zabbix-agent
     command: systemctl restart zabbix-agent
+    
   - name: enable zabbix-agent
     command: systemctl enable zabbix-agent
