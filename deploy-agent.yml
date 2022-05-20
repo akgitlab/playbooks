@@ -1,6 +1,6 @@
 ---
 - name: Install and configure Zabbix agent on RHEL & Debian family Linux distros
-  hosts: all
+  hosts: '{{ hostlist }}'
   debugger: on_failed
   
   tasks:
