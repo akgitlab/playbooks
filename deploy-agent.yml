@@ -79,7 +79,6 @@
       service:
         name: zabbix-agent
         enabled: yes
-        use: service
 
     - name: Open port 10050 TCP in firewall
       firewalld:
