@@ -4,55 +4,55 @@
   debugger: on_failed
   
   tasks:
-    - name: Install on CentOS 8
+    - name: Add repository on CentOS 8
       yum:
         name: https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/zabbix-release-6.0-1.el8.noarch.rpm
         state: present
       when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
 
-    - name: Install on CentOS 7
+    - name: Add repository on CentOS 7
       yum:
         name: https://repo.zabbix.com/zabbix/6.0/rhel/7/x86_64/zabbix-release-6.0-1.el7.noarch.rpm
         state: present
       when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
-    - name: Install on CentOS 6
+    - name: Add repository on CentOS 6
       yum:
         name: https://repo.zabbix.com/zabbix/6.0/rhel/6/x86_64/zabbix-release-6.0-1.el6.noarch.rpm
         state: present
       when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "6"
 
-    - name: Install on Debian 11
+    - name: Add repository on Debian 11
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-1+debian11_all.deb
       when: ansible_distribution == 'Debian' and ansible_distribution_major_version == "11"
 
-    - name: Install on Debian 10
+    - name: Add repository on Debian 10
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-1+debian10_all.deb
       when: ansible_distribution == 'Debian' and ansible_distribution_major_version == "10"
 
-    - name: Install on Debian 9
+    - name: Add repository on Debian 9
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-1+debian9_all.deb
       when: ansible_distribution == 'Debian' and ansible_distribution_major_version == "9"
       
-    - name: Install on Ubuntu 22
+    - name: Add repository on Ubuntu 22
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-2+ubuntu22.04_all.deb
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == "22"
       
-    - name: Install on Ubuntu 20
+    - name: Add repository on Ubuntu 20
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu20.04_all.deb
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == "20"
 
-    - name: Install on Ubuntu 18
+    - name: Add repository on Ubuntu 18
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu18.04_all.deb
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == "18"
 
-    - name: Install on Ubuntu 16
+    - name: Add repository on Ubuntu 16
       apt:
         deb: https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu16.04_all.deb
       when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == "16"
@@ -70,13 +70,13 @@
         group: root
         mode: '0644'
         
-    - name: restart zabbix-agent
+    - name: Restart zabbix-agent service
       command: systemctl restart zabbix-agent
     
-    - name: enable zabbix-agent
+    - name: Enable zabbix-agent service
       command: systemctl enable zabbix-agent
 
-    - name: Open port 10050 TCP
+    - name: Open port 10050 TCP in firewall
       firewalld:
         port: 10050/tcp
         permanent: yes
