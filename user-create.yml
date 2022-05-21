@@ -10,13 +10,10 @@
       shell: "grep -q '{{ username }}' /etc/passwd"
       ignore_errors: yes
       register: checkout
-
-    - name: Send message in console if the user exist
-      debug:
-        msg: User '{{ username }}' already exists and next action stopped!
-      when: checkout.rc == 0
       
     - name: Stop tne play if the user exist
+      debug:
+        msg: User '{{ username }}' already exists and next action stopped!
       meta: end_play
       when: checkout.rc == 0
   
