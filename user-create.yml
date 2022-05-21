@@ -40,3 +40,4 @@
       user:
         name: '{{ username }}'
         expires: '{{ date }}'
+      when: date is defined
