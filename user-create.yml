@@ -1,15 +1,35 @@
 ---
-- name: Create a new sudoers file
+- name: Create user on RHEL & Debian family Linux distros
+  hosts: '{{ hostlist }}'
+  
+  tasks:
+    - name: Create a new login user on RHEL family
+      user:
+        name: '{{ username }}'
+        password: '{{ password }}'
+        groups:
+          - wheel
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Create a new login user on Debian family
+      user:
+        name: '{{ username }}'
+        password: '{{ password }}'
+        groups:
+          - sudo
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      
+    - name: Create a new sudoers file for user
       file:
-        path: /etc/sudoers.d/zabbix
+        path: /etc/sudoers.d/'{{ username }}'
         state: touch
         mode: 0400
         owner: root
 
-    - name: Add sudoers
+    - name: Add sudoers content in file
       copy:
-        dest: /etc/sudoers.d/zabbix
+        dest: /etc/sudoers.d/'{{ username }}'
         content: |
-          Defaults:zabbix !requiretty
-          Cmnd_Alias ZABBIX_CMD = /usr/bin/virsh -q list, /usr/bin/virsh -q list --all
-          zabbix ALL = (root) NOPASSWD: ZABBIX_CMD
+          {{ username }}' ALL=(ALL) NOPASSWD: ALL
