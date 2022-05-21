@@ -56,3 +56,10 @@
         name: '{{ username }}'
         expires: '{{ date }}'
       when: date is defined
+
+    - mail:
+        host: localhost
+        port: 25
+        to: John Smith <akuznetsov@5-55.ru>
+        subject: Ansible-report
+        body: 'System {{ ansible_hostname }} has been successfully provisioned.'
