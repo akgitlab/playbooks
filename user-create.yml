@@ -11,13 +11,9 @@
       ignore_errors: yes
       register: checkout
       
-    - name: Send message in console if the user exist
-      debug:
+    - name: Send message in console and stop play if the user exist
+      fail:
         msg: User '{{ username }}' already exists and next action stopped!
-      when: checkout.rc == 0
-      
-    - name: Stop tne play if the user exist
-      meta: end_play
       when: checkout.rc == 0
   
     - name: Create a new login user on RHEL family
