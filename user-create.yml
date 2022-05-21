@@ -11,9 +11,13 @@
       ignore_errors: yes
       register: checkout
 
-    - name: Stop tne play if the user exist
+    - name: Send message in console if the user exist
       debug:
-        msg: "User '{{ username }}' exists"
+        msg: "User '{{ username }}' already exists"
+      meta: end_play
+      when: checkout.rc == 0
+      
+    - name: Stop tne play if the user exist
       meta: end_play
       when: checkout.rc == 0
   
