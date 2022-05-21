@@ -56,13 +56,3 @@
         name: '{{ username }}'
         expires: '{{ date }}'
       when: date is defined
-
-    - mail:
-        host: ex01.5-55.ru
-        port: 25
-        subject: Ansible-report
-        body: Hello, this is an e-mail. I hope you like it ;-)
-        from: ansible@5-55.ru
-        to: akuznetsov@5-55.ru
-        charset: utf8
-      delegate_to: localhost
