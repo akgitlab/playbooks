@@ -19,9 +19,9 @@
 
     - name: Remove old kernels on RHEL family OS
       hosts: '{{ hostlist }}'
-        shell: "package-cleanup -y --oldkernels --count=2"
+        shell: 'package-cleanup -y --oldkernels --count=2'
       when: ansible_os_family == "RedHat"
       
     - name: Remove old kernels on Debian family OS
-        shell: "apt-get purge -y $(dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | head -n -1) && apt autoremove && update-grub"
+        shell: 'apt-get purge -y $(dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | head -n -1) && apt autoremove && update-grub'
       when: ansible_os_family == "Debian"
