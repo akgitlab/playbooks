@@ -5,7 +5,7 @@
   tasks:
     - name: Create a new login user on RHEL family
       user:
-        name: {{ username }}
+        name: '{{ username }}'
         password: {{ password }}
         groups:
           - wheel
@@ -14,7 +14,7 @@
 
     - name: Create a new login user on Debian family
       user:
-        name: {{ username }}
+        name: '{{ username }}'
         password: {{ password }}
         groups:
           - sudo
