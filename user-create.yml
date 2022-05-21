@@ -14,7 +14,7 @@
     - name: Stop tne play if the user exist
       debug:
         msg: User '{{ username }}' already exists and next action stopped!
-      meta: end_play
+        meta: end_play
       when: checkout.rc == 0
   
     - name: Create a new login user on RHEL family
