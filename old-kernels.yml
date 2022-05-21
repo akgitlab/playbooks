@@ -11,17 +11,9 @@
         state: present
       when: ansible_os_family == "RedHat"
       
-    - name: Upgrade system on CentOS 8
-      shell: dnf -y upgrade
-      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"      
-      
     - name: Remove old kernels on CentOS 8
       shell: dnf remove -y --oldinstallonly --setopt installonly_limit=2 kernel
-      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"      
-      
-    - name: Upgrade system on CentOS 7
-      shell: yum -y upgrade
-      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"      
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
       
     - name: Install yum-utils package on CentOS 7
       package:
