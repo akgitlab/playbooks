@@ -3,12 +3,12 @@
   hosts: '{{ hostlist }}'
 
   tasks:
-  - name: Dynamically disable it before the reboot
-    shell: "setenforce 0"
-    failed_when: false
+    - name: Dynamically disable it before the reboot
+      shell: "setenforce 0"
+      failed_when: false
 
-  - name: Permanently disable
-    lineinfile:
-      dest: /etc/selinux/config
-      regexp: "^SELINUX="
-      line: "SELINUX=disabled"
+    - name: Permanently disable
+      lineinfile:
+        dest: /etc/selinux/config
+        regexp: "^SELINUX="
+        line: "SELINUX=disabled"
