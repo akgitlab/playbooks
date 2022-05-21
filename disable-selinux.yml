@@ -1,0 +1,9 @@
+- name:  Временный Закрыть Selinux.
+  shell: "setenforce 0"
+  failed_when: false
+
+- name:  Постоянно закрывать Selinux.
+  lineinfile:
+    dest: /etc/selinux/config
+    regexp: "^SELINUX="
+    line: "SELINUX=disabled"
