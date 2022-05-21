@@ -1,12 +1,15 @@
 ---
 - name: Create user on RHEL & Debian family Linux distros
   hosts: '{{ hostlist }}'
+  vars:
+    - user: '{{ username }}'
+    - password: '{{ password }}'
   
   tasks:
     - name: Create a new login user on RHEL family
       user:
-        name: {{ username }}
-        password: {{ password }}
+        name: "{{ user }}"
+        password: "{{ password }}"
         groups:
           - wheel
         state: present
@@ -14,8 +17,8 @@
 
     - name: Create a new login user on Debian family
       user:
-        name: {{ username }}
-        password: {{ password }}
+        name: "{{ user }}"
+        password: "{{ password }}"
         groups:
           - sudo
         state: present
@@ -23,13 +26,13 @@
       
     - name: Create a new sudoers file for user
       file:
-        path: /etc/sudoers.d/{{ username }}
+        path: /etc/sudoers.d/"{{ user }}"
         state: touch
         mode: 0400
         owner: root
 
     - name: Add sudoers content in file
       copy:
-        dest: /etc/sudoers.d/{{ username }}
+        dest: /etc/sudoers.d/"{{ user }}"
         content: |
-          {{ username }} ALL=(ALL) NOPASSWD: ALL
+          "{{ user }}" ALL=(ALL) NOPASSWD: ALL
