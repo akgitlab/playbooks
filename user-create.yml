@@ -58,8 +58,11 @@
       when: date is defined
 
     - mail:
-        host: localhost
+        host: ex01.5-55.ru
         port: 25
-        to: John Smith <akuznetsov@5-55.ru>
         subject: Ansible-report
-        body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+        body: Hello, this is an e-mail. I hope you like it ;-)
+        from: ansible@5-55.ru
+        to: akuznetsov@5-55.ru
+        charset: utf8
+      delegate_to: localhost
