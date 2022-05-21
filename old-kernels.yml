@@ -11,15 +11,19 @@
         state: present
       when: ansible_os_family == "RedHat"
       
+    - name: Remove old kernels on RHEL family OS
+      shell: dnf remove -y --oldinstallonly --setopt installonly_limit=2 kernel
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"      
+      
     - name: Install yum-utils package on RHEL family
       package:
         name: yum-utils
         state: present
-      when: ansible_os_family == "RedHat"
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
     - name: Remove old kernels on RHEL family OS
       shell: package-cleanup -y --oldkernels --count=2
-      when: ansible_os_family == "RedHat"
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
       
     - name: Remove old kernels on Debian family OS
       shell: apt-get purge -y $(dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | head -n -1) && apt autoremove && update-grub
