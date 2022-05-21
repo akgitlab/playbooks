@@ -11,7 +11,7 @@
       ignore_errors: yes
       register: checkout
       
-    - name: Send message in console and stop play if the user exist
+    - name: Stop play and send message in console if the user exist
       fail:
         msg: User '{{ username }}' already exists and next action stopped!
       when: checkout.rc == 0
