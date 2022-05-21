@@ -4,7 +4,18 @@
   vars:
     password: '{{ nohash }}'
   
-  tasks:  
+  tasks:
+  
+    - name: Check if user exists
+      shell: "grep -q '{{ username }}' /etc/passwd"
+      ignore_errors: yes
+      register: out
+
+    - name: Action with user
+      debug:
+        msg: "User '{{ username }}' exists"
+      when: out.rc == 0
+  
     - name: Create a new login user on RHEL family
       user:
         name: '{{ username }}'
