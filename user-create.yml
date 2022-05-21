@@ -13,7 +13,7 @@
 
     - name: Send message in console if the user exist
       debug:
-        msg: "User '{{ username }}' already exists"
+        msg: User '{{ username }}' already exists and next action stopped!
       when: checkout.rc == 0
       
     - name: Stop tne play if the user exist
