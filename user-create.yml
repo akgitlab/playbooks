@@ -1,12 +1,14 @@
 ---
 - name: Create user with admin access on RHEL & Debian family Linux distros
   hosts: '{{ hostlist }}'
+  vars:
+    encrypt: '{{ password }}'
   
   tasks:  
     - name: Create a new login user on RHEL family
       user:
         name: '{{ username }}'
-        password: "{{ password }}"
+        password: "{{ encrypt | password_hash('sha512') }}"
         groups:
           - wheel
         state: present
@@ -15,7 +17,7 @@
     - name: Create a new login user on Debian family
       user:
         name: '{{ username }}'
-        password: "{{ password }}"
+        password: "{{ encrypt | password_hash('sha512') }}"
         groups:
           - sudo
         state: present
