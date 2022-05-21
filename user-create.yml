@@ -11,6 +11,7 @@
         password: "{{ password | password_hash('sha512') }}"
         groups:
           - wheel
+        expires: '{{ date }}'
         state: present
       when: ansible_os_family == "RedHat"
 
@@ -20,6 +21,7 @@
         password: "{{ password | password_hash('sha512') }}"
         groups:
           - sudo
+        expires: '{{ date }}'
         state: present
       when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
       
