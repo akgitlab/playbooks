@@ -1,8 +1,13 @@
-- name:  Временный Закрыть Selinux.
+---
+- name: Disable Security-Enhanced Linux
+  hosts: '{{ hostlist }}'
+
+  tasks:
+- name: Dynamically disable it before the reboot
   shell: "setenforce 0"
   failed_when: false
 
-- name:  Постоянно закрывать Selinux.
+- name: Permanently disable
   lineinfile:
     dest: /etc/selinux/config
     regexp: "^SELINUX="
