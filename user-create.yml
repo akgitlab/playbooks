@@ -15,6 +15,9 @@
       debug:
         msg: "User '{{ username }}' exists"
       when: checkout.rc == 0
+      
+    - meta: end_play
+      when: checkout.rc == 0
   
     - name: Create a new login user on RHEL family
       user:
