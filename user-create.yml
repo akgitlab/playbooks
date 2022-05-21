@@ -64,4 +64,4 @@
         to: "{{ username }}"@5-55.ru
         subject: Your account has been created
         body: For access the host '{{ hostlist }}' use yor name '{{ username }}' and password '{{ nohash }}'
-        delegate_to: localhost
+      delegate_to: localhost
