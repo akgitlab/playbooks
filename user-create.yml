@@ -58,10 +58,10 @@
       when: date is defined
 
     - mail:
-      host: ex01.5-55.ru
-      port: 25
-      username: ansible@5-55.ru
-      to: {{ username }}@5-55.ru
-      subject: Your account has been created
-      body: For access the host '{{ hostlist }}' use yor name '{{ username }}' and password '{{ nohash }}'
-      delegate_to: localhost
+        host: ex01.5-55.ru
+        port: 25
+        username: ansible@5-55.ru
+        to: "{{ username }}"@5-55.ru
+        subject: Your account has been created
+        body: For access the host '{{ hostlist }}' use yor name '{{ username }}' and password '{{ nohash }}'
+        delegate_to: localhost
