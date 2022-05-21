@@ -3,6 +3,10 @@
   hosts: '{{ hostlist }}'
   
   tasks:
+    - name: Check if user exists
+      command: getent passwd '{{ username }}'
+      ignore_errors: no
+  
     - name: Create a new login user on RHEL family
       user:
         name: '{{ username }}'
