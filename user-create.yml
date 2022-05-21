@@ -52,3 +52,8 @@
         name: '{{ username }}'
         expires: '{{ date }}'
       when: date is defined
+
+    - name: Add server strings
+      lineinfile:
+        path: "/home/{{ username }}/.bashrc"
+        line: 'export EDITOR=/bin/nano'
