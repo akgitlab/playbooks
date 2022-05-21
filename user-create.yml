@@ -1,5 +1,5 @@
 ---
-- name: Create user with admin access on RHEL & Debian family Linux distros
+- name: Create user with admin access
   hosts: '{{ hostlist }}'
   vars:
     password: '{{ nohash }}'
@@ -16,7 +16,7 @@
         msg: User '{{ username }}' already exists and next action stopped!
       when: checkout.rc == 0
   
-    - name: Create a new login user on RHEL family
+    - name: Create a new login user on RHEL family OS
       user:
         name: '{{ username }}'
         password: "{{ password | password_hash('sha512') }}"
@@ -25,7 +25,7 @@
         state: present
       when: ansible_os_family == "RedHat"
 
-    - name: Create a new login user on Debian family
+    - name: Create a new login user on Debian family OS
       user:
         name: '{{ username }}'
         password: "{{ password | password_hash('sha512') }}"
