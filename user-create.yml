@@ -6,7 +6,7 @@
     - name: Create a new login user on RHEL family
       user:
         name: '{{ username }}'
-        password: "$1${{ md5hash }}"
+        password: "$6${{ md5hash }}"
         groups:
           - wheel
         state: present
@@ -15,7 +15,7 @@
     - name: Create a new login user on Debian family
       user:
         name: '{{ username }}'
-        password: "$1${{ md5hash }}"
+        password: "$6${{ md5hash }}"
         groups:
           - sudo
         state: present
