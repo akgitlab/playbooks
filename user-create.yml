@@ -2,15 +2,11 @@
 - name: Create user with admin access on RHEL & Debian family Linux distros
   hosts: '{{ hostlist }}'
   
-  tasks:
-    - name: Check if user exists
-      command: getent passwd '{{ username }}'
-      ignore_errors: no
-  
+  tasks:  
     - name: Create a new login user on RHEL family
       user:
         name: '{{ username }}'
-        password: '{{ password }}'
+        password: "{{ password }}"
         groups:
           - wheel
         state: present
@@ -19,7 +15,7 @@
     - name: Create a new login user on Debian family
       user:
         name: '{{ username }}'
-        password: '{{ password }}'
+        password: "{{ password }}"
         groups:
           - sudo
         state: present
