@@ -1,0 +1,11 @@
+---
+- name: Create user with admin access
+  hosts: '{{ hostlist }}'
+  
+  tasks:
+  
+    - name: Expiry time for the user in epoch  
+      user:
+        name: '{{ username }}'
+        expires: '{{ date }}'
+      when: date is defined
