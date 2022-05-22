@@ -2,7 +2,9 @@
 - hosts: '{{ hostlist }}'
   gather_facts: true
 
+
   tasks:
+
   - name: Restart custom service
     service:
       name: '{{ service }}'
