@@ -9,7 +9,7 @@
   tasks:
   
     - name: Get checksum value
-      command: md5sum "{{ keyfile }}"
+      shell: md5sum "{{ keyfile }}"
       register: md5value
 
     - name: This will slice and print the md5 only
