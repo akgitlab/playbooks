@@ -21,6 +21,7 @@
       user:
         name: '{{ username }}'
         password: "{{ password | password_hash('sha512') }}"
+        update_password: on_create
         groups:
           - wheel
         state: present
@@ -30,6 +31,7 @@
       user:
         name: '{{ username }}'
         password: "{{ password | password_hash('sha512') }}"
+        update_password: on_create
         groups:
           - sudo
         state: present
