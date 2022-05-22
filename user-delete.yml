@@ -1,0 +1,26 @@
+---
+- name: Delete user and home directory
+  hosts: '{{ hostlist }}'
+ 
+  
+  tasks:
+  
+    - name: Check if the user exist
+      shell: "grep -q '{{ username }}' /etc/passwd"
+      ignore_errors: yes
+      register: checkout
+      
+    - name: Stop play and send message in console if the user not exist
+      fail:
+        msg: "User '{{ username }}' does not exist and next action stopped!"
+      when: checkout.rc == 1
+      
+    - name: Delete user to group and home directory
+      user:
+        name: '{{ username }}'
+        state: absent
+        remove: yes 
+        force: yes
+        
+    - name: Delete a sudoers file for user
+      shell: rm -f /etc/sudoers.d/{{ username }}
