@@ -1,0 +1,15 @@
+---
+- name: Copy public key authentication to remote system
+  hosts: '{{ hostlist }}'
+  gather_facts: false
+  
+  
+  tasks:
+  
+    - name: Delete old key file for manager user
+      shell: rm -f /home/devops/.ssh/authorized_keys
+  
+    - name: Make direcotry
+      file:
+        path: "/home/devops/.ssh"
+        state: directory
