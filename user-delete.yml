@@ -7,7 +7,7 @@
   
     - name: Delete user to group and home directory
       user:
-        name: {{ username }}
+        name: '{{ username }}'
         state: absent
         remove: yes 
         force: yes
