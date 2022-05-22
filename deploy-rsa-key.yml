@@ -1,16 +1,16 @@
 ---
-- name: Copy public key to remote system
+- name: Deploy public key to remote system
   hosts: '{{ hostlist }}'
   gather_facts: false
   
   
   tasks:
   
-    - name: Delete old key file
+    - name: Delete old key file if exist
       shell: rm -f /home/devops/.ssh/authorized_keys
       ignore_errors: yes
 
-    - name: Copy new public key file
+    - name: Copy public key file
       copy:
         src: /home/devops/.ssh/authorized_keys
         dest: /home/devops/.ssh/
