@@ -3,7 +3,7 @@
   hosts: '{{ hostlist }}'
   gather_facts: false
   vars:
-    - keyfile: /home/devops/.ssh/authorized_keys
+    - keyfile: '/home/devops/.ssh/authorized_keys'
     
     
   tasks:
