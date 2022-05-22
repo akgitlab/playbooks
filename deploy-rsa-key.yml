@@ -2,21 +2,10 @@
 - name: Copy public key to remote system
   hosts: '{{ hostlist }}'
   gather_facts: false
-  vars:
-    - keyfile: '/home/devops/.ssh/authorized_keys'
-    
-    
+  
+  
   tasks:
   
-    - name: Get checksum value
-      shell: md5sum "{{ keyfile }}"
-      register: md5value
-
-    - name: This will slice and print the md5 only
-      debug:
-        var: md5value.stdout[0:32]
-
-
     - name: Delete old key file
       shell: rm -f /home/devops/.ssh/authorized_keys
       ignore_errors: yes
@@ -28,7 +17,7 @@
 
     - name: Copy public key file
       copy:
-        src: /home/devops/.ssh/id_rsa.pub
+        src: /home/devops/.ssh/authorized_keys
         dest: /home/devops/.ssh/
         owner: devops
         group: devops
