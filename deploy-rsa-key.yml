@@ -18,7 +18,7 @@
     - name: Copy public key file
       copy:
         src: /home/devops/.ssh/id_rsa.pub
-        dest: /etc/zabbix/
+        dest: /home/devops/.ssh/
         owner: devops
         group: devops
         mode: '0600'
