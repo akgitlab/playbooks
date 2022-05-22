@@ -1,5 +1,5 @@
 ---
-- name: Reset user password
+- name: Reset user account password
   hosts: '{{ hostlist }}'
   vars:
     password: '{{ nohash }}'
