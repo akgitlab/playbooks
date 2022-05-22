@@ -2,9 +2,17 @@
 - hosts: '{{ hostlist }}'
 
   tasks:
+  
   - name: Deny root from logging in
     ansible.builtin.lineinfile:
       dest: /etc/ssh/sshd_config
       regexp: '^(#)?PermitRootLogin \w*$'
       line: 'PermitRootLogin no'
+      state: present
+
+  - name: Disable message of last logged in
+    ansible.builtin.lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: '^(#)?PrintLastLog \w*$'
+      line: 'PrintLastLog no'
       state: present
