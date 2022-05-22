@@ -1,5 +1,6 @@
 ---
 - hosts: '{{ hostlist }}'
   gather_facts: false
+  
   tasks:
     - ping:
