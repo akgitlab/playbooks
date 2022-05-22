@@ -47,6 +47,9 @@
         dest: /etc/sudoers.d/{{ username }}
         content: |
           {{ username }} ALL=(ALL) NOPASSWD: ALL
+          
+    - name: Expiring password for user to install a new one on first login
+      shell: chage -d 0 '{{ username }}'
 
     - name: Expiry time for the user in epoch (default value never or -1)
       user:
