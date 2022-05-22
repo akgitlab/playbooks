@@ -51,5 +51,5 @@
     - name: Expiry time for the user in epoch (default value never or -1)
       user:
         name: '{{ username }}'
-        expires: '{{ date }}'
+        expires: '{{ timestamp }}'
       when: date is defined
