@@ -1,15 +1,24 @@
 ---
-- name: Copy public key authentication to remote system
+- name: Copy public key to remote system
   hosts: '{{ hostlist }}'
   gather_facts: false
   
   
   tasks:
   
-    - name: Delete old key file for manager user
+    - name: Delete old key file
       shell: rm -f /home/devops/.ssh/authorized_keys
+      ignore_errors: yes
   
     - name: Make direcotry
       file:
         path: "/home/devops/.ssh"
         state: directory
+
+    - name: Copy public key file
+      copy:
+        src: /home/devops/.ssh/id_rsa.pub
+        dest: /etc/zabbix/
+        owner: devops
+        group: devops
+        mode: '0600'
