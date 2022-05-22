@@ -2,7 +2,9 @@
 - name: Remove old kernels on RHEL & Debian family Linux distros
   hosts: '{{ hostlist }}'
 
+
   tasks:
+  
     - name: Try to install more than 2 kernel packages
       ansible.builtin.lineinfile:
         dest: /etc/dnf/dnf.conf
