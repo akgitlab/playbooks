@@ -6,23 +6,9 @@
   
   tasks:
   
-    - name: Check if a key file exists
-      raw: test -e /home/devops/.ssh/authorized_keys && echo -n true || echo -n false
-      register: file_exists
-
-    - debug: msg="Key file if exist on host"
-      when: file_exists.stdout == "true"
-  
     - name: Delete old key file
       shell: rm -f /home/devops/.ssh/authorized_keys
       ignore_errors: yes
-      when: file_exists.stdout == "true"
-  
-    - name: Make direcotry
-      file:
-        path: "/home/devops/.ssh"
-        state: directory
-      when: file_exists.stdout == "false"
 
     - name: Copy public key file
       copy:
