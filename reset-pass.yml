@@ -1,0 +1,27 @@
+---
+- name: Reset user password
+  hosts: '{{ hostlist }}'
+  vars:
+    password: '{{ nohash }}'
+  
+  
+  tasks:
+  
+    - name: Check if the user not exist
+      shell: "grep -q '{{ username }}' /etc/passwd"
+      ignore_errors: yes
+      register: checkout
+      
+    - name: Stop play and send message in console if the user not exist
+      fail:
+        msg: "User '{{ username }}' does not exist and next action stopped!"
+      when: checkout.rc == 1
+  
+    - name: Create a new password for user
+      user:
+        name: '{{ username }}'
+        password: "{{ password | password_hash('sha512') }}"
+        update_password: always
+      
+    - name: Expiring password for user to install a new one on first login
+      shell: chage -d 0 '{{ username }}'
