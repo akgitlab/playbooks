@@ -5,7 +5,7 @@
   
   tasks:
   
-    - name: Check if the user exist
+    - name: Check if the user not exist
       shell: "grep -q '{{ username }}' /etc/passwd"
       ignore_errors: yes
       register: checkout
