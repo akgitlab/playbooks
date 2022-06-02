@@ -1,9 +1,10 @@
 ---
-- name: Disable Security-Enhanced Linux
+- name: Run custom command on the shell
   hosts: '{{ hostlist }}'
   
   
   tasks:
   
-    - name: Dynamically disable it before the reboot
+    - name: Custom command
       shell: "reboot"
+      failed_when: false
