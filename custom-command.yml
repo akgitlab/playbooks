@@ -1,0 +1,9 @@
+---
+- name: Disable Security-Enhanced Linux
+  hosts: '{{ hostlist }}'
+  
+  
+  tasks:
+  
+    - name: Dynamically disable it before the reboot
+      shell: "setenforce 0"
