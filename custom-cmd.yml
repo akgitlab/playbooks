@@ -6,4 +6,4 @@
   tasks:
   
     - name: Dynamically disable it before the reboot
-      shell: "setenforce 0"
+      shell: "reboot"
