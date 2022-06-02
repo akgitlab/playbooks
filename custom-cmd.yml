@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      shell: "rm /etc/zabbix/zabbix_agentd.d/simple-inside-check.conf"
+      shell: "service zabbix-agent restart"
       failed_when: false
