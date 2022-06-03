@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      shell: "service zabbix-agent restart"
+      shell: "service zabbix-proxy restart"
       failed_when: false
