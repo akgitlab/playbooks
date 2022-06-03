@@ -5,8 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/zabbix/lib/get-device-ip.sh
+      src: /home/devops/share/config/zabbix/lib/devices-ip-list.txt
       dest: /usr/lib/zabbix/internalscripts/network/
       owner: root
       group: root
-      mode: '755'
+      mode: '644'
