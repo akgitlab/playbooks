@@ -5,8 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/zabbix/zabbix_agentd.d/cross-analys.conf
-      dest: /etc/zabbix/zabbix_agentd.d/
+      src: /home/devops/share/config/zabbix/lib/get-device-ip.sh
+      dest: /usr/lib/zabbix/internalscripts/network/
       owner: root
       group: root
-      mode: '644'
+      mode: '755'
