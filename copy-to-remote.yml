@@ -5,7 +5,7 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/zabbix/zabbix_agentd.d/simple-inside-check.conf
+      src: /home/devops/share/config/zabbix/zabbix_agentd.d/cross-analys.conf
       dest: /etc/zabbix/zabbix_agentd.d/
       owner: root
       group: root
