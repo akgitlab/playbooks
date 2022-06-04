@@ -5,8 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/zabbix/lib/hosts-ip-list.txt
-      dest: /usr/lib/zabbix/internalscripts/hardware/esxi/
+      src: /home/devops/share/config/zabbix/zabbix_agentd.conf
+      dest:  /etc/zabbix/
       owner: root
       group: root
       mode: '644'
