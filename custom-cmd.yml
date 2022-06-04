@@ -6,5 +6,9 @@
   tasks:
   
     - name: Custom command
-      shell: "service zabbix-agent restart"
+      shell: "chmod +x /usr/lib/zabbix/internalscripts/network/get-device-ip.sh"
+      failed_when: false
+
+    - name: Custom command 2
+      shell: "chmod +x /usr/lib/zabbix/internalscripts/network/get-host-ip.sh"
       failed_when: false
