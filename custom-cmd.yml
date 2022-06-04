@@ -6,9 +6,9 @@
   tasks:
   
     - name: Custom command
-      shell: "chmod +x /usr/lib/zabbix/internalscripts/network/get-device-ip.sh"
+      shell: "systemctl start chronyd"
       failed_when: false
 
     - name: Custom command 2
-      shell: "chmod +x /usr/lib/zabbix/internalscripts/network/get-host-ip.sh"
+      shell: "systemctl enable chronyd"
       failed_when: false
