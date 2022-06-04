@@ -17,6 +17,7 @@
      group: root
      mode: 0644
      backup: no
+   notify: Restart chrony now
       
   - name: Ensure chrony services is started and enabled at boot
     service:
