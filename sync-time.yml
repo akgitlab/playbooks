@@ -1,22 +1,29 @@
 ---
-- hosts: all
+- hosts: '{{ hostlist }}'
+  gather_facts: False
+
   tasks:
-  - name: make sure chronyd is installed
-    yum:
+  - name: Make sure chronyd is installed
+    dnf:
      name: chrony
      state: latest
      update_cache: yes
 
-  - name: deploy chrony.conf template
+  - name: Deploy configuration file
     template:
-     src: /some/full/path/chrony.conf.j2
-     dest: /etc/chrony.conf
+     src: /etc/chrony.conf
+     dest: /etc/
      owner: root
      group: root
      mode: 0644
-     backup: yes
-
+     backup: no
+      
   - name: Restart chronyd
     service:
       name: chronyd
       state: restarted
+      
+  - name: Enable service and not touch the running state
+    service:
+      name: chronyd
+      enabled: yes
