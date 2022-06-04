@@ -18,7 +18,7 @@
      mode: 0644
      backup: no
       
-  - name: Restart chronyd
+  - name: Restart service chronyd
     service:
       name: chronyd
       state: restarted
