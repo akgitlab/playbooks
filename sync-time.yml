@@ -18,12 +18,8 @@
      mode: 0644
      backup: no
       
-  - name: Restart service chronyd
+  - name: Ensure chrony services is started and enabled at boot
     service:
       name: chronyd
       state: restarted
-      
-  - name: Enable service and not touch the running state
-    service:
-      name: chronyd
       enabled: yes
