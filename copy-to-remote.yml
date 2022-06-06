@@ -5,40 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/zabbix/zabbix_agentd.d/cross-analys.conf
-      dest:  /etc/zabbix/zabbix_agentd.d/
-      owner: root
-      group: root
-      mode: '644'
-
-  - name: Copy file to remote hosts 2
-    copy:
-      src: /home/devops/share/config/zabbix/lib/devices-ip-list.txt
-      dest:  /usr/lib/zabbix/internalscripts/network/
-      owner: root
-      group: root
-      mode: '644'
-      
-  - name: Copy file to remote hosts 3
-    copy:
-      src: /home/devops/share/config/zabbix/lib/get-device-ip.sh
-      dest:  /usr/lib/zabbix/internalscripts/network/
-      owner: root
-      group: root
-      mode: '644'
-      
-  - name: Copy file to remote hosts 4
-    copy:
-      src: /home/devops/share/config/zabbix/lib/hosts-ip-list.txt
-      dest:  /usr/lib/zabbix/internalscripts/network/
-      owner: root
-      group: root
-      mode: '644'
-      
-  - name: Copy file to remote hosts 5
-    copy:
-      src: /home/devops/share/config/zabbix/lib/get-host-ip.sh
-      dest:  /usr/lib/zabbix/internalscripts/network/
+      src: /etc/my.cnf.d/mysql-server.cnf
+      dest:  /etc/my.cnf.d/
       owner: root
       group: root
       mode: '644'
