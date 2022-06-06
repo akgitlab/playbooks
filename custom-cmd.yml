@@ -6,9 +6,5 @@
   tasks:
   
     - name: Custom command
-      shell: "systemctl start chronyd"
-      failed_when: false
-
-    - name: Custom command 2
-      shell: "systemctl enable chronyd"
+      shell: "systemctl restart mysqld"
       failed_when: false
