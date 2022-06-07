@@ -5,8 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /etc/my.cnf.d/mysql-server.cnf
-      dest:  /etc/my.cnf.d/
+      src: /home/devops/share/config/zabbix/zabbix_agentd.conf
+      dest:  /etc/zabbix/
       owner: root
       group: root
       mode: '644'
