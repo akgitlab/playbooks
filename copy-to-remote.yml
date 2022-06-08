@@ -10,3 +10,7 @@
       owner: root
       group: root
       mode: '644'
+  
+  - name: Custom command
+    shell: "systemctl restart zabbix-agent"
+    failed_when: false
