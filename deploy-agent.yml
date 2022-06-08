@@ -80,7 +80,7 @@
     - name: Start service if not running
       service:
         name: zabbix-agent
-        state: started
+        state: restarted
     
     - name: Enable as system service
       service:
