@@ -86,27 +86,3 @@
       service:
         name: zabbix-agent
         enabled: yes
-
-    - name: Open port 10050 TCP in firewall
-      firewalld:
-        port: 10050/tcp
-        permanent: yes
-        state: enabled
-      when: ansible_os_family == "RedHat"
-
-    - name: Restart firewalld service
-      ansible.builtin.service:
-        name: firewalld
-        state: restarted
-      when: ansible_os_family == "RedHat"
-      
-    - name: Open port 10050 TCP in iptables
-      iptables:
-        chain: INPUT
-        protocol: tcp
-        destination_port: 10050
-        ctstate: NEW
-        syn: match
-        jump: ACCEPT
-        comment: Accept Zabbix-agent connections
-      when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
