@@ -5,12 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/zabbix/zabbix_agentd.conf
-      dest:  /etc/zabbix/
+      src: /home/devops/share/files/nano/
+      dest:  /usr/share/nano
       owner: root
       group: root
       mode: '644'
-  
-  - name: Custom command
-    shell: "systemctl restart zabbix-agent"
-    failed_when: false
