@@ -5,8 +5,12 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/files/nano/
-      dest:  /usr/share/nano
+      src: /home/devops/share/config/mysql/fine-tuning.cnf
+      dest:  /etc/my.cnf.d
       owner: root
       group: root
       mode: '644'
+
+  - name: Custom command
+    shell: "systemctl restart mysql"
+    failed_when: false
