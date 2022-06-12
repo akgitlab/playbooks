@@ -5,12 +5,8 @@
   tasks:
   - name: Copy file to remote hosts
     copy:
-      src: /home/devops/share/config/mysql/fine-tuning.cnf
-      dest:  /etc/my.cnf.d
-      owner: root
-      group: root
-      mode: '644'
-
-  - name: Custom command
-    shell: "systemctl restart mysqld"
-    failed_when: false
+      src: '{{ source }}'
+      dest:  '{{ destination }}'
+      owner: '{{ username }}'
+      group: '{{ groupname }}'
+      mode: '{{ permissions }}'
