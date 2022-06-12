@@ -7,5 +7,5 @@
   tasks:
   
     - name: Custom command
-      shell: "{{ command }}"
+      shell: "'{{ command }}'"
       failed_when: false
