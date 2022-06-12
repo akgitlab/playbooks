@@ -1,12 +1,10 @@
 ---
 - name: Run custom command on the shell
   hosts: '{{ hostlist }}'
-  vars:
-    cmd: '{{ command }}'
   
   
   tasks:
   
     - name: Custom command
-      shell: "{{ cmd }}"
+      shell: "{{ command }}"
       failed_when: false
