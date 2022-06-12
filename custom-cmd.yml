@@ -1,10 +1,11 @@
 ---
 - name: Run custom command on the shell
   hosts: '{{ hostlist }}'
+  cmd: '{{ command }}'
   
   
   tasks:
   
     - name: Custom command
-      shell: "systemctl restart mysqld"
+      shell: "{{ command }}"
       failed_when: false
