@@ -6,5 +6,5 @@
   tasks:
   
     - name: Run a script
-      script: "{{ path }}"
+      script: "{{ fullpath }}"
       failed_when: false
