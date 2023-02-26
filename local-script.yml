@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      ansible.builtin.script: '{{ path }}' '{{ arguments }}'
+      script: "{{ path }} {{ arguments }}"
       failed_when: false
