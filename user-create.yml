@@ -67,3 +67,14 @@
         name: '{{ username }}'
         expires: '{{ timestamp }}'
       when: date is defined
+      
+    - name: Sending an e-mail using Gmail SMTP servers
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: network.adm.000@gmail.com
+        password: 18285b25ca
+        to: akuznetsov@5-55.ru
+        subject: Ansible-report
+        body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+      delegate_to: localhost
