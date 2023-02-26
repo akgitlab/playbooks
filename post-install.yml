@@ -1,0 +1,10 @@
+---
+- name: Run custom command on the shell
+  hosts: '{{ hostlist }}'
+  
+  
+  tasks:
+  
+    - name: Custom command
+      - script: /some/local/create_file.sh --some-arguments 1234
+      failed_when: false
