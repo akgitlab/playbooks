@@ -1,10 +1,10 @@
 ---
-- name: Run custom command on the shell
+- name: Run a script with arguments
   hosts: '{{ hostlist }}'
   
   
   tasks:
   
-    - name: Custom command
+    - name: Run a script
       script: "{{ path }}"
       failed_when: false
