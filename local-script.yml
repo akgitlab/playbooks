@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      script: /some/local/create_file.sh --some-arguments 1234
+      script: '{{ path }}' '{{ arguments }}'
       failed_when: false
