@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      script: '{{ path }}' '{{ arguments }}'
+      script: "{{ path }}" "{{ arguments }}"
       failed_when: false
