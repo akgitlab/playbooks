@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      shell: echo "\033[0;31m {{ message }} \033[0m" > /dev/pts/0
+      shell: wall -n "\033[0;31m {{ message }} \033[0m"
       failed_when: false
