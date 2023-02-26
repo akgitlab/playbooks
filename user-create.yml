@@ -17,7 +17,7 @@
         msg: "User '{{ username }}' already exists and next action stopped!"
       when: checkout.rc == 0
   
-    - name: Create a new login user on RHEL family OS
+    - name: Create a new login user with admin access on RHEL family OS
       user:
         name: '{{ username }}'
         shell: /bin/bash
@@ -28,7 +28,7 @@
         state: present
       when: ansible_os_family == "RedHat"
 
-    - name: Create a new login user on Debian family OS
+    - name: Create a new login user with admin access on Debian family OS
       user:
         name: '{{ username }}'
         shell: /bin/bash
