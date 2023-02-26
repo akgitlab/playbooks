@@ -1,0 +1,10 @@
+---
+- name: Send custom message to users console
+  hosts: '{{ hostlist }}'
+  
+  
+  tasks:
+  
+    - name: Custom command
+      shell: "echo -e "\033[0;31m {{ message }} \033[0m" > /dev/pts/0"
+      failed_when: false
