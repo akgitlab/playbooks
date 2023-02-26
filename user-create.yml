@@ -20,6 +20,7 @@
     - name: Create a new login user on RHEL family OS
       user:
         name: '{{ username }}'
+        shell: /bin/bash
         password: "{{ password | password_hash('sha512') }}"
         update_password: on_create
         groups:
@@ -30,6 +31,7 @@
     - name: Create a new login user on Debian family OS
       user:
         name: '{{ username }}'
+        shell: /bin/bash
         password: "{{ password | password_hash('sha512') }}"
         update_password: on_create
         groups:
