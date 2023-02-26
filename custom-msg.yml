@@ -6,5 +6,5 @@
   tasks:
   
     - name: Custom command
-      shell: wall -n "\033[0;31m {{ message }} \033[0m"
+      shell: wall -n "" && wall -n "{{ message }}"
       failed_when: false
