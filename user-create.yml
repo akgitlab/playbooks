@@ -68,13 +68,10 @@
         expires: '{{ timestamp }}'
       when: date is defined
       
-    - name: Sending an e-mail using Gmail SMTP servers
+    - name: Sending an e-mail using the remote machine, not the Ansible controller node
       mail:
-        host: smtp.gmail.com
-        port: 587
-        username: 88888@gmail.com
-        password: 989898989898989898989
+        host: 10.3.44.51
+        port: 25
         to: akuznetsov@5-55.ru
         subject: Ansible-report
         body: 'System {{ ansible_hostname }} has been successfully provisioned.'
-      delegate_to: localhost
