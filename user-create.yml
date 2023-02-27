@@ -70,8 +70,9 @@
       
     - name: Sending an e-mail using Legacy SSL to the remote machine
       mail:
-        host: 10.3.44.51
+        host: 10.3.44.55
         port: 25
+        sender: Orchestration service <ansible@5-55.ru>
         to: akuznetsov@5-55.ru
         subject: Ansible-report
         body: 'System {{ ansible_hostname }} has been successfully provisioned.'
