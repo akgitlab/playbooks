@@ -75,4 +75,4 @@
         to: akuznetsov@5-55.ru
         subject: Ansible-report
         body: 'System {{ ansible_hostname }} has been successfully provisioned.'
-        secure: starttls
+      delegate_to: localhost
