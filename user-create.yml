@@ -68,10 +68,11 @@
         expires: '{{ timestamp }}'
       when: date is defined
       
-    - name: Sending an e-mail using the remote machine, not the Ansible controller node
+    - name: Sending an e-mail using Legacy SSL to the remote machine
       mail:
         host: 10.3.44.51
         port: 25
         to: akuznetsov@5-55.ru
         subject: Ansible-report
         body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+        secure: starttls
